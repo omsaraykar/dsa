@@ -1,4 +1,4 @@
-package Basics;
+package _1_Basics;
 
 public class ArmstrongNumber {
     public boolean isArmstrong(int n) {

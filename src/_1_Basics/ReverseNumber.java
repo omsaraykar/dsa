@@ -1,4 +1,4 @@
-package Basics;
+package _1_Basics;
 
 public class ReverseNumber {
     public int reverse(int x) {

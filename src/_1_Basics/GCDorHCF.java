@@ -1,4 +1,4 @@
-package Basics;
+package _1_Basics;
 
 public class GCDorHCF {
     public int gcd(int a, int b) {

@@ -1,4 +1,4 @@
-package Basics;
+package _1_Basics;
 
 public class PalindromeNumber {
     public boolean isPalindrome(int x) {

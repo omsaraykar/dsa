@@ -1,4 +1,4 @@
-package Basics.Recurssion;
+package _1_Basics.Recurssion;
 
 public class Fibonacci {
     public int fib(int n) {

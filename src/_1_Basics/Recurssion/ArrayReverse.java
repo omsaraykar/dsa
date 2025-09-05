@@ -1,4 +1,4 @@
-package Basics.Recurssion;
+package _1_Basics.Recurssion;
 
 public class ArrayReverse {
     public void reverseArray(int[] arr, int start, int end) {
