@@ -5,28 +5,24 @@ import java.util.*;
 public class LongestSubarray {
     // Longest Subarray with sum k
     static int longestSubarray(int[] arr, int k) {
-        Map<Integer, Integer> mp = new HashMap<>();
-        int res = 0;
-        int prefSum = 0;
+        Map<Integer, Integer> map = new HashMap<>();
 
-        for (int i = 0; i < arr.length; ++i) {
-            prefSum += arr[i];
+        int prefixSum = 0, maxLength = 0;
+        for (int i = 0; i < arr.length; i++) {
+            prefixSum += arr[i];
 
-            // Check if the entire prefix sums to k
-            if (prefSum == k)
-                res = i + 1;
+            if (prefixSum == k) {
+                maxLength = i + 1;
+            } else if (map.containsKey(prefixSum - k)) {
+                maxLength = Math.max(maxLength, i - map.get(prefixSum - k));
+            }
 
-                // If prefixSum - k exists in the map then there exist such
-                // subarray from (index of previous prefix + 1) to i.
-            else if (mp.containsKey(prefSum - k))
-                res = Math.max(res, i - mp.get(prefSum - k));
-
-            // Store only first occurrence index of prefSum
-            if (!mp.containsKey(prefSum))
-                mp.put(prefSum, i);
+            if (!map.containsKey(prefixSum)) {
+                map.put(prefixSum, i);
+            }
         }
 
-        return res;
+        return maxLength;
     }
 
     public int longestSubarrayBrute(int[] arr, int target) {
