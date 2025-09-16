@@ -1,5 +1,6 @@
 package CodeChef;
 
+import java.sql.SQLOutput;
 import java.util.*;
 import java.lang.*;
 import java.io.*;
@@ -11,21 +12,24 @@ class Codechef {
 
         while (t-- > 0) {
             int n = sc.nextInt();
-            int m = (n * (n - 1)) / 2;
-            int[] weights = new int[m];
-
-            for (int i = 0; i < m; i++) {
-                weights[i] = sc.nextInt();
+            int[] arr = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = sc.nextInt();
             }
 
-            Arrays.sort(weights);
-
-            long maxMSTValue = 0;
+            boolean found = false;
             for (int i = 0; i < n - 1; i++) {
-                maxMSTValue += weights[i];
+                if (arr[i + 1] < arr[i]) {
+                    found = true;
+                    System.out.println(arr[i]);
+                    break;
+                }
             }
 
-            System.out.println(maxMSTValue);
+            if (!found) {
+                System.out.println(arr[n - 1]);
+            }
+
         }
     }
 }
