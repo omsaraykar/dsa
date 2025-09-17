@@ -12,24 +12,25 @@ class Codechef {
 
         while (t-- > 0) {
             int n = sc.nextInt();
+            int m = sc.nextInt();
             int[] arr = new int[n];
+
+            int sum = 0;
             for (int i = 0; i < n; i++) {
                 arr[i] = sc.nextInt();
+                sum += arr[i];
             }
 
-            boolean found = false;
-            for (int i = 0; i < n - 1; i++) {
-                if (arr[i + 1] < arr[i]) {
-                    found = true;
-                    System.out.println(arr[i]);
-                    break;
+            for (int i = 0; i < m; i++) {
+                int newSum = 0;
+                for (int j = 0; j < n; j++) {
+                    arr[j] = (arr[j] + 1) % m;
+                    newSum += arr[j];
                 }
+                sum = Math.min(sum, newSum);
             }
 
-            if (!found) {
-                System.out.println(arr[n - 1]);
-            }
-
+            System.out.println(sum);
         }
     }
 }
