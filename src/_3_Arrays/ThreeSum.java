@@ -9,20 +9,19 @@ public class ThreeSum {
         HashMap<Integer, Integer> map = new HashMap<>();
 
         for (int i = 0; i < n - 1; i++) {
-            for (int j = i + 2; j < n; j++) {
-                map.put(nums[j - 1], j - 1);
+            for (int j = i + 1; j < n; j++) {
                 int req = - (nums[i] + nums[j]);
                 if (map.containsKey(req)) {
-                    List<Integer> list = new ArrayList<>();
-                    list.add(nums[i]);
-                    list.add(nums[j]);
-                    list.add(req);
+                    List<Integer> list = Arrays.asList(nums[i], nums[j], req);
                     Collections.sort(list);
 
                     set.add(list);
                 }
+                map.put(nums[j - 1], j - 1);
             }
             map.clear();
+
+
         }
 
         return new ArrayList<>(set);
