@@ -11,24 +11,14 @@ class Codechef {
         int t = sc.nextInt();
 
         while (t-- > 0) {
-            int n = sc.nextInt();
-            int m = sc.nextInt();
-            int[] arr = new int[n];
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            int n = (x + y) / 3;
 
-            int sum = 0;
-            for (int i = 0; i < n; i++) {
-                arr[i] = sc.nextInt();
-                sum += arr[i];
-            }
+            int sum;
 
-            for (int i = 0; i < m; i++) {
-                int newSum = 0;
-                for (int j = 0; j < n; j++) {
-                    arr[j] = (arr[j] + 1) % m;
-                    newSum += arr[j];
-                }
-                sum = Math.min(sum, newSum);
-            }
+            if (y >= x) sum = 2 * n;
+            else sum = (2 * y) + (n - y);
 
             System.out.println(sum);
         }
