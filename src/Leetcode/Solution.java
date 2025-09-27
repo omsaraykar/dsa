@@ -3,47 +3,58 @@ package Leetcode;
 import java.util.*;
 
 public class Solution {
-    public long maximumTotalValue(int[] nums, int k) {
-        int n = nums.length;
-        if (n == 0 || k == 0) return 0L;
+    class Cords {
+        int x;
+        int y;
 
-        PriorityQueue<Long> minHeap = new PriorityQueue<>();
-
-        for (int left = 0; left < n; left++) {
-            int curMax = nums[left];
-            int curMin = nums[left];
-            for (int right = left; right < n; right++) {
-                if (nums[right] > curMax) curMax = nums[right];
-                if (nums[right] < curMin) curMin = nums[right];
-
-                long val = (long) curMax - (long) curMin;
-
-                if (minHeap.size() < k) {
-                    minHeap.add(val);
-                } else if (val > minHeap.peek()) {
-                    minHeap.poll();
-                    minHeap.add(val);
-                }
-            }
+        Cords(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof Cords)) return false;
+            Cords other = (Cords) o;
+            return this.x == other.x && this.y == other.y;
         }
 
-        long ans = 0L;
-        while (!minHeap.isEmpty()) ans += minHeap.poll();
-        return ans;
+        @Override
+        public int hashCode() {
+            return Objects.hash(x, y);
+        }
+    }
+    public int distinctPoints(String s, int k) {
+        int n = s.length();
+        HashSet<Cords> set = new HashSet<>();
+
+        int idx = 0;
+        while (idx + k <= n) {
+            int x = 0, y = 0;
+            for (int i = 0; i < s.length(); i++) {
+                if (i >= idx && i < idx + k) continue;
+                char ch = s.charAt(i);
+                if (ch == 'U') {
+                    y += 1;
+                } else if (ch == 'D') {
+                    y -= 1;
+                } else if (ch == 'L') {
+                    x -= 1;
+                } else if (ch == 'R') {
+                    x += 1;
+                }
+            }
+            idx++;
+            set.add(new Cords(x, y));
+            System.out.println(x + " " + y);
+        }
+
+        return set.size();
     }
 
-    // quick test
+
     public static void main(String[] args) {
-        Solution s = new Solution();
-        int[] nums1 = {1,3,2};
-        System.out.println(s.maximumTotalValue(nums1, 2)); // expected 4
-
-        int[] nums2 = {4,2,5,1};
-        System.out.println(s.maximumTotalValue(nums2, 3)); // expected 12
-
-        int[] nums3 = {5,2,3,4,1};
-        System.out.println(s.maximumTotalValue(nums3, 3)); // expected 10
+        Solution sol = new Solution();
+        System.out.println(sol.distinctPoints("LUL", 1));;
     }
 }
-// multiple max
-// k i max
