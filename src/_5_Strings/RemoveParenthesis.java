@@ -1,6 +1,4 @@
-package Strings;
-
-import java.util.Stack;
+package _5_Strings;
 
 public class RemoveParenthesis {
     public String removeOuterParentheses(String s) {

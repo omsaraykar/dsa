@@ -1,4 +1,4 @@
-package Strings;
+package _5_Strings;
 
 public class ReverseWords {
     public static String reverseWords(String s) {

@@ -15,9 +15,6 @@ public class SortCharacters {
         }
 
         public int compareTo (Pair o) {
-            if (this.freq == o.freq) {
-                return Math.max(this.ch, o.ch) - Math.min(this.ch, o.ch);
-            }
             return o.freq - this.freq;
         }
     }
