@@ -3,30 +3,54 @@ package Leetcode;
 import java.util.*;
 
 public class Solution {
-    public long splitArray(int[] nums) {
-        int idx = 0;
-        while (idx < nums.length - 1 && nums[idx + 1] > nums[idx]) {
-            idx++;
-        }
+    public String removeSubstring(String s, int k) {
+        ArrayDeque<Character> st = new ArrayDeque<>();
 
-        long sumBefore = 0, sumAfter = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (i < idx) {
-                sumBefore += nums[i];
-            } else if (i > idx) {
-                sumAfter += nums[i];
+        for (char c : s.toCharArray()) {
+            st.addLast(c);
+
+            if (st.size() >= 2 * k) {
+                boolean isKBalanced = true;
+                int i = 0;
+
+                for (char ch : st.toArray(new Character[0])) {
+                    if (i >= k) break;
+                    if (ch != '(') {
+                        isKBalanced = false;
+                        break;
+                    }
+                    i++;
+                }
+
+                if (isKBalanced) {
+                    int j = 0;
+                    Character[] arr = st.toArray(new Character[0]);
+                    for (int idx = k; idx < 2 * k; idx++) {
+                        if (arr[idx] != ')') {
+                            isKBalanced = false;
+                            break;
+                        }
+                        j++;
+                    }
+                }
+
+                if (isKBalanced) {
+                    for (int x = 0; x < 2 * k; x++) st.removeLast();
+                }
             }
         }
 
-        long diff1 = Math.abs(sumBefore - (sumAfter + nums[idx]));
-        long diff2 = Math.abs((sumBefore + nums[idx]) - sumAfter);
-
-        return Math.min(diff1, diff2);
+        // Rebuild string
+        StringBuilder sb = new StringBuilder();
+        for (char c : st) sb.append(c);
+        return sb.toString();
     }
+
 
     public static void main(String[] args) {
         Solution sol = new Solution();
-        long ans = sol.splitArray(new int[] {1,2,4,3});
-        System.out.println(ans);
+
+
+
     }
 }
