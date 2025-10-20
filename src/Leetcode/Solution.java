@@ -3,54 +3,36 @@ package Leetcode;
 import java.util.*;
 
 public class Solution {
-    public String removeSubstring(String s, int k) {
-        ArrayDeque<Character> st = new ArrayDeque<>();
+    public int longestBalanced(String s) {
+        int maxLen = 0;
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i; j < s.length(); j++) {
+                int[] freqArray = new int[26];
+                char ch = s.charAt(j);
+                freqArray[ch - 'a']++;
 
-        for (char c : s.toCharArray()) {
-            st.addLast(c);
-
-            if (st.size() >= 2 * k) {
-                boolean isKBalanced = true;
-                int i = 0;
-
-                for (char ch : st.toArray(new Character[0])) {
-                    if (i >= k) break;
-                    if (ch != '(') {
-                        isKBalanced = false;
-                        break;
-                    }
-                    i++;
-                }
-
-                if (isKBalanced) {
-                    int j = 0;
-                    Character[] arr = st.toArray(new Character[0]);
-                    for (int idx = k; idx < 2 * k; idx++) {
-                        if (arr[idx] != ')') {
-                            isKBalanced = false;
+                int equalFreq = 0; boolean balanced = true;
+                for (int freq: freqArray) {
+                    if (freq > 0) {
+                        if (equalFreq == 0) {
+                            equalFreq = freq;
+                        }
+                        else if (freq != equalFreq){
+                            balanced = false;
                             break;
                         }
-                        j++;
                     }
                 }
-
-                if (isKBalanced) {
-                    for (int x = 0; x < 2 * k; x++) st.removeLast();
+                if (balanced) {
+                    maxLen = Math.max(maxLen, j - i + 1);
                 }
             }
         }
 
-        // Rebuild string
-        StringBuilder sb = new StringBuilder();
-        for (char c : st) sb.append(c);
-        return sb.toString();
+        return maxLen;
     }
-
 
     public static void main(String[] args) {
         Solution sol = new Solution();
-
-
-
     }
 }
