@@ -1,15 +1,15 @@
 package _6_Linked_Lists;
 
-public class ListNode {
+public class Node {
     int val;
     Node next;
-    ListNode() {
+    Node() {
 
     }
-    ListNode(int val) {
+    Node(int val) {
         this.val = val;
     }
-    ListNode(int val, Node next) {
+    Node(int val, Node next) {
         this.val = val; this.next = next;
     }
 }

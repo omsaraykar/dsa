@@ -1,9 +1,9 @@
 package _6_Linked_Lists;
 
 public class MiddleOfLL {
-    public ListNode middleNode(ListNode head) {
-        ListNode slow = head;
-        ListNode fast = head;
+    public Node middleNode(Node head) {
+        Node slow = head;
+        Node fast = head;
 
         while(fast != null && fast.next != null){
             slow = slow.next;
