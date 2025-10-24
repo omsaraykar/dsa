@@ -17,7 +17,7 @@ public class RotatedArray {
                 }
             } else {
                 // right sorted
-                if (target >= nums[mid] && targeet <= nums[hi]) {
+                if (target >= nums[mid] && target <= nums[hi]) {
                     lo = mid + 1;
                 } else {
                     hi = mid - 1;
