@@ -733,3 +733,53 @@ class Solution {
 }
 ```
 ---
+### Q20]
+
+---
+### Q21]
+
+---
+
+### Q22] Shortest Path in Undirected Graph
+**M: BFS `TC: O(V + E), SC: O(V + E)`**
+```java
+class Solution {
+    public int[] shortestPath(int V, int[][] edges, int src) {
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+        for (int i = 0; i < V; i++) {
+            adj.add(new ArrayList<>());
+        }
+
+        for (int[] edge: edges) {
+            adj.get(edge[0]).add(edge[1]);
+            adj.get(edge[1]).add(edge[0]);
+        }
+
+        int[] dist = new int[V];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[src] = 0;
+
+        Queue<Integer> q = new LinkedList<>();
+        q.add(src);
+
+        while(!q.isEmpty()) {
+            int node = q.poll();
+            for (int neig: adj.get(node)) {
+                if (dist[node] + 1 < dist[neig]) {
+                    dist[neig] = dist[node] + 1;
+                    q.add(neig);
+                }
+            }
+        }
+
+        for (int i = 0; i < V; i++) {
+            if (dist[i] == Integer.MAX_VALUE) {
+                dist[i] = -1;
+            }
+        }
+        
+        return dist;
+    }
+}
+```
+---
