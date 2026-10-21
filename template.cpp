@@ -11,6 +11,9 @@ using vll = vector<ll>;
 #define pb push_back
 #define rep(i, a, b) for (int i = (a); i < (b); i++)
 #define has(b, a) ((b).find(a) != string::npos)
+#define maxpq(t) priority_queue<t>
+#define minpq(t) priority_queue<t, vector<t>, greater<t>>
+#define pii pair<int,int>
 
 const int MOD = 1e9 + 7;
 const ll INF = 1e18;

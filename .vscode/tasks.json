@@ -1,23 +1,29 @@
-
 {
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Compile and Run C++",
+            "label": "CP: Run Current File",
             "type": "shell",
             "command": "bash",
             "args": [
                 "-c",
-                "g++ -std=c++23 -O2 -Wall \"${file}\" -o \"${fileDirname}/main\" && \"${fileDirname}/main\" < \"${fileDirname}/input.txt\" > \"${fileDirname}/output.txt\""
+                "g++ -std=c++23 -O2 -Wall -Wextra \"${file}\" -o /tmp/cp_program && /tmp/cp_program < \"${fileDirname}/input.txt\" > \"${fileDirname}/output.txt\"; status=$?; rm -f /tmp/cp_program; exit $status"
             ],
             "options": {
                 "cwd": "${fileDirname}"
             },
+            "problemMatcher": [
+                "$gcc"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": ["$gcc"]
+            "presentation": {
+                "reveal": "never",
+                "panel": "shared",
+                "clear": true
+            }
         }
     ]
 }
