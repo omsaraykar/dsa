@@ -19,10 +19,6 @@ const int MOD = 1e9 + 7;
 const ll INF = 1e18;
 
 void solve() {
-    int n;
-    cin >> n;
-    vi a(n);
-    for (auto &x : a) cin >> x;
     
 }
 
